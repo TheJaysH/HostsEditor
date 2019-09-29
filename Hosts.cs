@@ -40,6 +40,7 @@ namespace HostsEditor
             }
             catch (Exception)
             {
+                //TODO
                 throw;
             }
            
@@ -49,23 +50,23 @@ namespace HostsEditor
         {
             var newFile = new StringBuilder();
 
-            newFile.Append(Properties.Resources.Hosts_Blank);
-            newFile.AppendLine();
+            newFile.Append(Properties.Resources.Hosts_Blank);            
+            newFile.Append("#\r\n");
+            newFile.Append("# The following entires have been added by HostsEditor.exe\r\n");
+            newFile.Append("#\r\n\r\n");
 
             foreach (var host in HostEntries)
             {
                 newFile.Append(host);
             }
 
-
-
+            File.WriteAllText("hosts", newFile.ToString());
         }
 
     }
 
     public class HostEntry
     {
-        private string Line { get; set; }
         public string IpAddress { get; set; }
         public string UrlAddress { get; set; }
         public bool Enabled { get; set; } 
@@ -75,14 +76,17 @@ namespace HostsEditor
             var parts = line.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
 
             IpAddress = parts[0];
-            UrlAddress = parts[1];
-            Line = line;
-            Enabled = !Line.StartsWith("#");           
+            UrlAddress = parts[1];            
+            Enabled = !line.StartsWith("#");           
+        }
+
+        public HostEntry()
+        {
         }
 
         public override string ToString()
         {
-            return $"{(Enabled ? "" : "#")}{IpAddress}\t\t{UrlAddress}\r\n";
+            return $"{(Enabled ? "" : "# ")}{IpAddress}\t\t{UrlAddress}\r\n";
         }
 
     }
