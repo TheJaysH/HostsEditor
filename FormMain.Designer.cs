@@ -59,11 +59,19 @@
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listView_Main = new System.Windows.Forms.ListView();
-            this.enabled = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ipAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.hostname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
+            this.olvColumn_Enabled = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn_IpAddress = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn_UrlAddress = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -103,7 +111,7 @@
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.newToolStripMenuItem.Text = "&New";
             // 
             // openToolStripMenuItem
@@ -302,55 +310,109 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             // 
-            // listView_Main
+            // objectListView1
             // 
-            this.listView_Main.CheckBoxes = true;
-            this.listView_Main.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.enabled,
-            this.ipAddress,
-            this.hostname});
-            this.listView_Main.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView_Main.HideSelection = false;
-            this.listView_Main.LabelEdit = true;
-            this.listView_Main.Location = new System.Drawing.Point(0, 24);
-            this.listView_Main.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.listView_Main.Name = "listView_Main";
-            this.listView_Main.ShowGroups = false;
-            this.listView_Main.Size = new System.Drawing.Size(316, 322);
-            this.listView_Main.TabIndex = 1;
-            this.listView_Main.UseCompatibleStateImageBehavior = false;
-            this.listView_Main.View = System.Windows.Forms.View.Details;
+            this.objectListView1.AllColumns.Add(this.olvColumn_Enabled);
+            this.objectListView1.AllColumns.Add(this.olvColumn_IpAddress);
+            this.objectListView1.AllColumns.Add(this.olvColumn_UrlAddress);
+            this.objectListView1.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick;
+            this.objectListView1.CellEditUseWholeCell = false;
+            this.objectListView1.CheckBoxes = true;
+            this.objectListView1.CheckedAspectName = "Enabled";
+            this.objectListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn_Enabled,
+            this.olvColumn_IpAddress,
+            this.olvColumn_UrlAddress});
+            this.objectListView1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.objectListView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.objectListView1.HideSelection = false;
+            this.objectListView1.Location = new System.Drawing.Point(0, 0);
+            this.objectListView1.Name = "objectListView1";
+            this.objectListView1.ShowGroups = false;
+            this.objectListView1.Size = new System.Drawing.Size(316, 283);
+            this.objectListView1.TabIndex = 1;
+            this.objectListView1.UseCompatibleStateImageBehavior = false;
+            this.objectListView1.View = System.Windows.Forms.View.Details;
             // 
-            // enabled
+            // olvColumn_Enabled
             // 
-            this.enabled.Text = "Enabled";
-            this.enabled.Width = 83;
+            this.olvColumn_Enabled.AspectName = "Enabled";
+            this.olvColumn_Enabled.Text = "Enabled";
+            this.olvColumn_Enabled.Width = 86;
             // 
-            // ipAddress
+            // olvColumn_IpAddress
             // 
-            this.ipAddress.Text = "IP Address";
-            this.ipAddress.Width = 104;
+            this.olvColumn_IpAddress.AspectName = "IpAddress";
+            this.olvColumn_IpAddress.Text = "Ip Address";
+            this.olvColumn_IpAddress.Width = 100;
             // 
-            // hostname
+            // olvColumn_UrlAddress
             // 
-            this.hostname.Text = "Hostname";
-            this.hostname.Width = 111;
+            this.olvColumn_UrlAddress.AspectName = "UrlAddress";
+            this.olvColumn_UrlAddress.Text = "Url Address";
+            this.olvColumn_UrlAddress.Width = 107;
             // 
-            // Form1
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer1.IsSplitterFixed = true;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.objectListView1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.button2);
+            this.splitContainer1.Panel2.Controls.Add(this.button1);
+            this.splitContainer1.Size = new System.Drawing.Size(316, 322);
+            this.splitContainer1.SplitterDistance = 283;
+            this.splitContainer1.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(238, 5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Close";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(157, 5);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Save";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(316, 346);
-            this.Controls.Add(this.listView_Main);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "Form1";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "FormMain";
             this.Text = "Hosts Editor";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -388,10 +450,13 @@
         private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ListView listView_Main;
-        private System.Windows.Forms.ColumnHeader enabled;
-        private System.Windows.Forms.ColumnHeader ipAddress;
-        private System.Windows.Forms.ColumnHeader hostname;
+        private BrightIdeasSoftware.ObjectListView objectListView1;
+        private BrightIdeasSoftware.OLVColumn olvColumn_Enabled;
+        private BrightIdeasSoftware.OLVColumn olvColumn_IpAddress;
+        private BrightIdeasSoftware.OLVColumn olvColumn_UrlAddress;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }
 

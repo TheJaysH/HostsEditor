@@ -22,21 +22,43 @@ namespace HostsEditor
             HostEntries = new List<HostEntry>();
         }
 
-        public void Read()
+        public bool Read()
         {
-            var hostFile = File.ReadAllLines(HostFilePath);
-            var hostHead = HostHead.Split(new char[] { '\r','\n' }, StringSplitOptions.RemoveEmptyEntries );
-
-            foreach (var line in hostFile)
+            try
             {
-                if (hostHead.Contains(line) || string.IsNullOrEmpty(line)) continue;
-                var entry = new HostEntry(line);
-                HostEntries.Add(entry);
+                var hostFile = File.ReadAllLines(HostFilePath);
+                var hostHead = HostHead.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (var line in hostFile)
+                {
+                    if (hostHead.Contains(line) || string.IsNullOrEmpty(line)) continue;
+                    var entry = new HostEntry(line);
+                    HostEntries.Add(entry);
+                }
+
+                return HostEntries.Count > 0;
             }
+            catch (Exception)
+            {
+                throw;
+            }
+           
         }
 
         public void Write()
-        {            
+        {
+            var newFile = new StringBuilder();
+
+            newFile.Append(Properties.Resources.Hosts_Blank);
+            newFile.AppendLine();
+
+            foreach (var host in HostEntries)
+            {
+                newFile.Append(host);
+            }
+
+
+
         }
 
     }
@@ -63,19 +85,5 @@ namespace HostsEditor
             return $"{(Enabled ? "" : "#")}{IpAddress}\t\t{UrlAddress}\r\n";
         }
 
-        public ListViewItem GetListViewItem()
-        {
-            var item = new ListViewItem(new string[] 
-            {
-                Enabled.ToString(),
-                IpAddress,
-                UrlAddress
-            });
-
-            item.Checked = Enabled;
-            item.Tag = this;
-
-            return item;
-        }
     }
 }
