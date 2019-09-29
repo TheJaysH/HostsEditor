@@ -12,7 +12,6 @@ namespace HostsEditor
 {
     public partial class FormMain : Form
     {
-
         public static ListView ListView { get; set; }
         public static Hosts Hosts { get; set; }
 
