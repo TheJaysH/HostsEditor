@@ -36,8 +36,7 @@ namespace HostsEditor
         }
 
         public void Write()
-        {
-            
+        {            
         }
 
     }
