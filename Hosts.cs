@@ -24,6 +24,8 @@ namespace HostsEditor
 
         public bool Read()
         {
+            HostEntries.Clear();
+
             try
             {
                 var hostFile = File.ReadAllLines(HostFilePath);
@@ -48,19 +50,22 @@ namespace HostsEditor
 
         public void Write()
         {
+
+
             var newFile = new StringBuilder();
 
-            newFile.Append(Properties.Resources.Hosts_Blank);            
-            newFile.Append("#\r\n");
-            newFile.Append("# The following entires have been added by HostsEditor.exe\r\n");
-            newFile.Append("#\r\n\r\n");
+            newFile.Append(Properties.Resources.Hosts_Blank);
+            newFile.AppendLine();
 
             foreach (var host in HostEntries)
             {
                 newFile.Append(host);
             }
 
-            File.WriteAllText("hosts", newFile.ToString());
+            var file = new FileInfo(HostFilePath);
+            file.CopyTo($"{file}.bkackup", true);
+
+            File.WriteAllText(file.FullName, newFile.ToString());
         }
 
     }
@@ -69,19 +74,21 @@ namespace HostsEditor
     {
         public string IpAddress { get; set; }
         public string UrlAddress { get; set; }
-        public bool Enabled { get; set; } 
-
-        public HostEntry(string line)
-        {
-            var parts = line.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
-
-            IpAddress = parts[0];
-            UrlAddress = parts[1];            
-            Enabled = !line.StartsWith("#");           
-        }
+        public bool Enabled { get; set; }
 
         public HostEntry()
         {
+        }
+
+        public HostEntry(string line)
+        {
+            var parts = line.Replace("#", string.Empty).Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+
+            IpAddress = parts[0];
+            UrlAddress = parts[1];            
+            Enabled = !line.StartsWith("#"); 
+            
+
         }
 
         public override string ToString()
